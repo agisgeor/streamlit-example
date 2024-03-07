@@ -12,7 +12,27 @@ forums](https://discuss.streamlit.io).
 
 In the meantime, below is an example of what you can do with just a few lines of code:
 """
+# Access secrets
+username = st.secrets["app_secrets"]["username"]
+password = st.secrets["app_secrets"]["password"]
 
+# Placeholder for login message
+login_message = st.empty()
+
+# Create a simple login form
+with st.sidebar:
+    st.sidebar.header("Login")
+    entered_username = st.sidebar.text_input("Username")
+    entered_password = st.sidebar.text_input("Password", type="password")
+    login_button = st.sidebar.button("Login")
+
+if login_button:
+    if entered_username == username and entered_password == password:
+        st.success("You are successfully logged in!")
+        # Place your app's main code here
+    else:
+        login_message.error("Invalid username or password. Please try again.")
+        
 num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
 num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
 
