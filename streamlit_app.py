@@ -29,11 +29,7 @@ with st.sidebar:
 if login_button:
     if entered_username == username and entered_password == password:
         st.success("You are successfully logged in!")
-        # Place your app's main code here
-    else:
-        login_message.error("Invalid username or password. Please try again.")
-        
-num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
+        num_points = st.slider("Number of points in spiral", 1, 10000, 1100)
 num_turns = st.slider("Number of turns in spiral", 1, 300, 31)
 
 indices = np.linspace(0, 1, num_points)
@@ -58,3 +54,7 @@ st.altair_chart(alt.Chart(df, height=700, width=700)
         color=alt.Color("idx", legend=None, scale=alt.Scale()),
         size=alt.Size("rand", legend=None, scale=alt.Scale(range=[1, 150])),
     ))
+    else:
+        login_message.error("Invalid username or password. Please try again.")
+        
+
